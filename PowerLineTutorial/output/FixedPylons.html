@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <!--
+      The Domain introduction parameters will be replaced with the
+      document title extracted from the <h1> element or
+      file name, if there is no <h1> heading
+    -->
+    <title>Domain introduction</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="styles/style.css" />
+    <script src="styles/tips.js" type="text/javascript"></script>
+    
+    <script language="javascript" type="text/javascript">
+      function init()
+      {
+        try {
+          websocket = new WebSocket("ws://" + window.location.hostname + ":" + window.location.port + "/websocket");
+          websocket.onmessage = function(evt) { location.reload(); };
+        } catch (e) { /* silently ignore lack of websockets */ }
+      }
+      window.addEventListener("load", init, false);
+    </script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <!-- <ul class="nav nav-pills pull-right">
+          <li><a href="http://fslab.org">fslab.org</a></li>
+          <li><a href="http://fsharp.github.io/FSharp.Data/">F# Data</a></li>
+          <li><a href="http://bluemountaincapital.github.io/Deedle">Deedle</a></li>
+          <li><a href="http://bluemountaincapital.github.io/FSharpRProvider">R Provider</a></li>
+          <li><a href="http://tahahachana.github.io/XPlot/">XPlot</a></li>
+          <li><a href="http://www.mathdotnet.com/">Math.Net</a></li> -->
+        <!-- </ul> -->
+		<img src="./styles/PetersburgLogo.jpg">
+		<img src="./styles/FSharp.png">
+      </div>
+      <div class="row" style="margin-top:5px">
+        <div class="span10" id="main">
+          <h1>Domain introduction</h1>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+<span class="l">17: </span>
+<span class="l">18: </span>
+<span class="l">19: </span>
+<span class="l">20: </span>
+<span class="l">21: </span>
+<span class="l">22: </span>
+<span class="l">23: </span>
+<span class="l">24: </span>
+<span class="l">25: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">//Simple types</span>
+<span class="k">type</span> <span onmouseout="hideTip(event, 'fs11', 11)" onmouseover="showTip(event, 'fs11', 11)" class="t">Height</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs11', 12)" onmouseover="showTip(event, 'fs11', 12)" class="p">Height</span> <span class="k">of</span> <span onmouseout="hideTip(event, 'fs12', 13)" onmouseover="showTip(event, 'fs12', 13)" class="t">float</span><span class="o">&lt;</span><span onmouseout="hideTip(event, 'fs9', 14)" onmouseover="showTip(event, 'fs9', 14)" class="t">m</span><span class="o">&gt;</span>
+<span class="k">type</span> <span onmouseout="hideTip(event, 'fs13', 15)" onmouseover="showTip(event, 'fs13', 15)" class="t">LinearWeight</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs13', 16)" onmouseover="showTip(event, 'fs13', 16)" class="p">LinearWeight</span> <span class="k">of</span> <span onmouseout="hideTip(event, 'fs12', 17)" onmouseover="showTip(event, 'fs12', 17)" class="t">float</span><span class="o">&lt;</span><span onmouseout="hideTip(event, 'fs14', 18)" onmouseover="showTip(event, 'fs14', 18)" class="t">N</span><span class="o">/</span><span onmouseout="hideTip(event, 'fs9', 19)" onmouseover="showTip(event, 'fs9', 19)" class="t">m</span><span class="o">&gt;</span>
+<span class="k">type</span> <span onmouseout="hideTip(event, 'fs15', 20)" onmouseover="showTip(event, 'fs15', 20)" class="t">CatenaryConstant</span> <span class="o">=</span> <span class="k">private</span> <span onmouseout="hideTip(event, 'fs15', 21)" onmouseover="showTip(event, 'fs15', 21)" class="p">CatenaryConstant</span> <span class="k">of</span> <span onmouseout="hideTip(event, 'fs12', 22)" onmouseover="showTip(event, 'fs12', 22)" class="t">float</span><span class="o">&lt;</span><span onmouseout="hideTip(event, 'fs9', 23)" onmouseover="showTip(event, 'fs9', 23)" class="t">m</span><span class="o">&gt;</span>
+<span class="k">type</span> <span onmouseout="hideTip(event, 'fs16', 24)" onmouseover="showTip(event, 'fs16', 24)" class="t">Xcoordinate</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs16', 25)" onmouseover="showTip(event, 'fs16', 25)" class="p">Xcoordinate</span> <span class="k">of</span> <span onmouseout="hideTip(event, 'fs12', 26)" onmouseover="showTip(event, 'fs12', 26)" class="t">float</span><span class="o">&lt;</span><span onmouseout="hideTip(event, 'fs9', 27)" onmouseover="showTip(event, 'fs9', 27)" class="t">m</span><span class="o">&gt;</span>
+
+<span class="c">//Composed types</span>
+<span class="k">type</span> <span onmouseout="hideTip(event, 'fs17', 28)" onmouseover="showTip(event, 'fs17', 28)" class="t">Pylon</span> <span class="o">=</span>
+    |<span onmouseout="hideTip(event, 'fs18', 29)" onmouseover="showTip(event, 'fs18', 29)" class="p">FixedPylon</span> <span class="k">of</span> <span onmouseout="hideTip(event, 'fs16', 30)" onmouseover="showTip(event, 'fs16', 30)" class="t">Xcoordinate</span>
+
+<span class="k">type</span> <span class="i">PowerlineSpatialRepresentation</span> <span class="o">=</span>
+    {
+        <span class="i">pylonCoordinates</span><span class="o">:</span>     (<span onmouseout="hideTip(event, 'fs12', 31)" onmouseover="showTip(event, 'fs12', 31)" class="t">float</span><span class="o">&lt;</span><span onmouseout="hideTip(event, 'fs9', 32)" onmouseover="showTip(event, 'fs9', 32)" class="t">m</span><span class="o">&gt;</span> <span onmouseout="hideTip(event, 'fs19', 33)" onmouseover="showTip(event, 'fs19', 33)" class="t">list</span><span class="o">*</span><span onmouseout="hideTip(event, 'fs12', 34)" onmouseover="showTip(event, 'fs12', 34)" class="t">float</span><span class="o">&lt;</span><span onmouseout="hideTip(event, 'fs9', 35)" onmouseover="showTip(event, 'fs9', 35)" class="t">m</span><span class="o">&gt;</span> <span onmouseout="hideTip(event, 'fs19', 36)" onmouseover="showTip(event, 'fs19', 36)" class="t">list</span>) <span onmouseout="hideTip(event, 'fs19', 37)" onmouseover="showTip(event, 'fs19', 37)" class="t">list</span>  
+        <span class="i">conductorCoordinates</span><span class="o">:</span> (<span onmouseout="hideTip(event, 'fs12', 38)" onmouseover="showTip(event, 'fs12', 38)" class="t">float</span><span class="o">&lt;</span><span onmouseout="hideTip(event, 'fs9', 39)" onmouseover="showTip(event, 'fs9', 39)" class="t">m</span><span class="o">&gt;</span> <span onmouseout="hideTip(event, 'fs19', 40)" onmouseover="showTip(event, 'fs19', 40)" class="t">list</span><span class="o">*</span><span onmouseout="hideTip(event, 'fs12', 41)" onmouseover="showTip(event, 'fs12', 41)" class="t">float</span><span class="o">&lt;</span><span onmouseout="hideTip(event, 'fs9', 42)" onmouseover="showTip(event, 'fs9', 42)" class="t">m</span><span class="o">&gt;</span> <span onmouseout="hideTip(event, 'fs19', 43)" onmouseover="showTip(event, 'fs19', 43)" class="t">list</span>) <span onmouseout="hideTip(event, 'fs19', 44)" onmouseover="showTip(event, 'fs19', 44)" class="t">list</span>
+    }
+
+<span class="k">type</span> <span class="i">PowerlineSystem</span> <span class="o">=</span>
+    <span class="k">private</span>
+        {
+            <span class="i">pylons</span><span class="o">:</span>       <span onmouseout="hideTip(event, 'fs17', 45)" onmouseover="showTip(event, 'fs17', 45)" class="t">Pylon</span> <span onmouseout="hideTip(event, 'fs19', 46)" onmouseover="showTip(event, 'fs19', 46)" class="t">list</span>
+            <span class="i">spanlengths</span><span class="o">:</span>  <span onmouseout="hideTip(event, 'fs12', 47)" onmouseover="showTip(event, 'fs12', 47)" class="t">float</span><span class="o">&lt;</span><span onmouseout="hideTip(event, 'fs9', 48)" onmouseover="showTip(event, 'fs9', 48)" class="t">m</span><span class="o">&gt;</span> <span onmouseout="hideTip(event, 'fs19', 49)" onmouseover="showTip(event, 'fs19', 49)" class="t">list</span>
+            <span class="i">height</span><span class="o">:</span>       <span onmouseout="hideTip(event, 'fs12', 50)" onmouseover="showTip(event, 'fs12', 50)" class="t">float</span><span class="o">&lt;</span><span onmouseout="hideTip(event, 'fs9', 51)" onmouseover="showTip(event, 'fs9', 51)" class="t">m</span><span class="o">&gt;</span>
+            <span class="i">catenaryConstant</span><span class="o">:</span> <span onmouseout="hideTip(event, 'fs12', 52)" onmouseover="showTip(event, 'fs12', 52)" class="t">float</span><span class="o">&lt;</span><span onmouseout="hideTip(event, 'fs9', 53)" onmouseover="showTip(event, 'fs9', 53)" class="t">m</span><span class="o">&gt;</span>
+            <span class="i">linearweight</span><span class="o">:</span> <span onmouseout="hideTip(event, 'fs12', 54)" onmouseover="showTip(event, 'fs12', 54)" class="t">float</span><span class="o">&lt;</span><span onmouseout="hideTip(event, 'fs14', 55)" onmouseover="showTip(event, 'fs14', 55)" class="t">N</span><span class="o">/</span><span onmouseout="hideTip(event, 'fs9', 56)" onmouseover="showTip(event, 'fs9', 56)" class="t">m</span><span class="o">&gt;</span>
+        }
+</code></pre></td>
+</tr>
+</table>
+<div class="tip" id="fs1">namespace Microsoft</div>
+<div class="tip" id="fs2">namespace Microsoft.FSharp</div>
+<div class="tip" id="fs3">namespace Microsoft.FSharp.Data</div>
+<div class="tip" id="fs4">namespace Microsoft.FSharp.Data.UnitSystems</div>
+<div class="tip" id="fs5">namespace Microsoft.FSharp.Data.UnitSystems.SI</div>
+<div class="tip" id="fs6">namespace Microsoft.FSharp.Data.UnitSystems.SI.UnitSymbols</div>
+<div class="tip" id="fs7">Multiple items<br />type LiteralAttribute =<br />&#160;&#160;inherit Attribute<br />&#160;&#160;new : unit -&gt; LiteralAttribute<br /><br />Full name: Microsoft.FSharp.Core.LiteralAttribute<br /><br />--------------------<br />new : unit -&gt; LiteralAttribute</div>
+<div class="tip" id="fs8">val GravitationalAcceleration : float&lt;m/s ^ 2&gt;<br /><br />Full name: FixedPylons.GravitationalAcceleration</div>
+<div class="tip" id="fs9">[&lt;Measure&gt;]<br />type m = Data.UnitSystems.SI.UnitNames.metre<br /><br />Full name: Microsoft.FSharp.Data.UnitSystems.SI.UnitSymbols.m</div>
+<div class="tip" id="fs10">[&lt;Measure&gt;]<br />type s = Data.UnitSystems.SI.UnitNames.second<br /><br />Full name: Microsoft.FSharp.Data.UnitSystems.SI.UnitSymbols.s</div>
+<div class="tip" id="fs11">Multiple items<br />union case Height.Height: float&lt;m&gt; -&gt; Height<br /><br />--------------------<br />type Height = | Height of float&lt;m&gt;<br /><br />Full name: FixedPylons.Height</div>
+<div class="tip" id="fs12">Multiple items<br />val float : value:&#39;T -&gt; float (requires member op_Explicit)<br /><br />Full name: Microsoft.FSharp.Core.Operators.float<br /><br />--------------------<br />type float = System.Double<br /><br />Full name: Microsoft.FSharp.Core.float<br /><br />--------------------<br />type float&lt;&#39;Measure&gt; = float<br /><br />Full name: Microsoft.FSharp.Core.float&lt;_&gt;</div>
+<div class="tip" id="fs13">Multiple items<br />union case LinearWeight.LinearWeight: float&lt;N/m&gt; -&gt; LinearWeight<br /><br />--------------------<br />type LinearWeight = | LinearWeight of float&lt;N/m&gt;<br /><br />Full name: FixedPylons.LinearWeight</div>
+<div class="tip" id="fs14">[&lt;Measure&gt;]<br />type N = Data.UnitSystems.SI.UnitNames.newton<br /><br />Full name: Microsoft.FSharp.Data.UnitSystems.SI.UnitSymbols.N</div>
+<div class="tip" id="fs15">Multiple items<br />union case CatenaryConstant.CatenaryConstant: float&lt;m&gt; -&gt; CatenaryConstant<br /><br />--------------------<br />type CatenaryConstant = private | CatenaryConstant of float&lt;m&gt;<br /><br />Full name: FixedPylons.CatenaryConstant</div>
+<div class="tip" id="fs16">Multiple items<br />union case Xcoordinate.Xcoordinate: float&lt;m&gt; -&gt; Xcoordinate<br /><br />--------------------<br />type Xcoordinate = | Xcoordinate of float&lt;m&gt;<br /><br />Full name: FixedPylons.Xcoordinate</div>
+<div class="tip" id="fs17">type Pylon = | FixedPylon of Xcoordinate<br /><br />Full name: FixedPylons.Pylon</div>
+<div class="tip" id="fs18">union case Pylon.FixedPylon: Xcoordinate -&gt; Pylon</div>
+<div class="tip" id="fs19">type &#39;T list = List&lt;&#39;T&gt;<br /><br />Full name: Microsoft.FSharp.Collections.list&lt;_&gt;</div>
+<div class="tip" id="fs20">Multiple items<br />type RequireQualifiedAccessAttribute =<br />&#160;&#160;inherit Attribute<br />&#160;&#160;new : unit -&gt; RequireQualifiedAccessAttribute<br /><br />Full name: Microsoft.FSharp.Core.RequireQualifiedAccessAttribute<br /><br />--------------------<br />new : unit -&gt; RequireQualifiedAccessAttribute</div>
+<div class="tip" id="fs21">Multiple items<br />type CompilationRepresentationAttribute =<br />&#160;&#160;inherit Attribute<br />&#160;&#160;new : flags:CompilationRepresentationFlags -&gt; CompilationRepresentationAttribute<br />&#160;&#160;member Flags : CompilationRepresentationFlags<br /><br />Full name: Microsoft.FSharp.Core.CompilationRepresentationAttribute<br /><br />--------------------<br />new : flags:CompilationRepresentationFlags -&gt; CompilationRepresentationAttribute</div>
+<div class="tip" id="fs22">type CompilationRepresentationFlags =<br />&#160;&#160;|  None  =  0<br />&#160;&#160;|  Static  =  1<br />&#160;&#160;|  Instance  =  2<br />&#160;&#160;|  ModuleSuffix  =  4<br />&#160;&#160;|  UseNullAsTrueValue  =  8<br />&#160;&#160;|  Event  =  16<br /><br />Full name: Microsoft.FSharp.Core.CompilationRepresentationFlags</div>
+<div class="tip" id="fs23">CompilationRepresentationFlags.ModuleSuffix: CompilationRepresentationFlags = 4</div>
+<div class="tip" id="fs24">val init : catenaryConstant:float&lt;m&gt; -&gt; CatenaryConstant option<br /><br />Full name: FixedPylons.CatenaryConstantModule.init</div>
+<div class="tip" id="fs25">val catenaryConstant : float&lt;m&gt;</div>
+<div class="tip" id="fs26">union case Option.None: Option&lt;&#39;T&gt;</div>
+<div class="tip" id="fs27">union case Option.Some: Value: &#39;T -&gt; Option&lt;&#39;T&gt;</div>
+<div class="tip" id="fs28">val value : CatenaryConstant -&gt; float&lt;m&gt;<br /><br />Full name: FixedPylons.CatenaryConstantModule.value</div>
+<div class="tip" id="fs29">val c : float&lt;m&gt;</div>
+<div class="tip" id="fs30">val init : Height -&gt; LinearWeight -&gt; pylons:Pylon list -&gt; catenaryConstant:CatenaryConstant -&gt; &#39;a option<br /><br />Full name: FixedPylons.PowerlineSystemModule.init</div>
+<div class="tip" id="fs31">val overallHeight : float&lt;m&gt;</div>
+<div class="tip" id="fs32">val linearWeight : float&lt;N/m&gt;</div>
+<div class="tip" id="fs33">val pylons : Pylon list</div>
+<div class="tip" id="fs34">val catenaryConstant : CatenaryConstant</div>
+<div class="tip" id="fs35">Multiple items<br />union case CatenaryConstant.CatenaryConstant: float&lt;m&gt; -&gt; CatenaryConstant<br /><br />--------------------<br />module CatenaryConstant<br /><br />from FixedPylons<br /><br />--------------------<br />type CatenaryConstant = private | CatenaryConstant of float&lt;m&gt;<br /><br />Full name: FixedPylons.CatenaryConstant</div>
+<div class="tip" id="fs36"></div>
+<div class="tip" id="fs37">val spans : obj</div>
+<div class="tip" id="fs38">Multiple items<br />module List<br /><br />from YoLo<br /><br />--------------------<br />module List<br /><br />from Microsoft.FSharp.Collections<br /><br />--------------------</div>
+<div class="tip" id="fs39">val toSpatialRepresentation : psystem:&#39;a -&gt; &#39;b<br /><br />Full name: FixedPylons.PowerlineSystemModule.toSpatialRepresentation</div>
+<div class="tip" id="fs40">val psystem : &#39;a</div>
+<div class="tip" id="fs41">val pylonCoordinates : obj</div>
+<div class="tip" id="fs42">val conductorCoordinates : obj</div>
+<div class="tip" id="fs43">val cosh : value:&#39;T -&gt; &#39;T (requires member Cosh)<br /><br />Full name: Microsoft.FSharp.Core.Operators.cosh</div>
+<div class="tip" id="fs44">val height : Height<br /><br />Full name: FixedPylons.PowerlineSetup.height</div>
+<div class="tip" id="fs45">val linearWeight : LinearWeight<br /><br />Full name: FixedPylons.PowerlineSetup.linearWeight</div>
+<div class="tip" id="fs46">[&lt;Measure&gt;]<br />type kg = Data.UnitSystems.SI.UnitNames.kilogram<br /><br />Full name: Microsoft.FSharp.Data.UnitSystems.SI.UnitSymbols.kg</div>
+<div class="tip" id="fs47">val pylons : Pylon list<br /><br />Full name: FixedPylons.PowerlineSetup.pylons</div>
+<div class="tip" id="fs48">val powerline : obj<br /><br />Full name: FixedPylons.PowerlineSetup.powerline</div>
+<div class="tip" id="fs49">Multiple items<br />module Option<br /><br />from YoLo<br /><br />--------------------<br />module Option<br /><br />from Microsoft.FSharp.Core</div>
+<div class="tip" id="fs50">val bind : binder:(&#39;T -&gt; &#39;U option) -&gt; option:&#39;T option -&gt; &#39;U option<br /><br />Full name: Microsoft.FSharp.Core.Option.bind</div>
+<div class="tip" id="fs51">module PowerlineSystem<br /><br />from FixedPylons</div>
+<div class="tip" id="fs52">val failwith : message:string -&gt; &#39;T<br /><br />Full name: Microsoft.FSharp.Core.Operators.failwith</div>
+<div class="tip" id="fs53">val powerlineSystem : obj</div>
+<div class="tip" id="fs54">module PlotPowerline<br /><br />from FixedPylons</div>
+<div class="tip" id="fs55">namespace XPlot</div>
+<div class="tip" id="fs56">namespace XPlot.Plotly</div>
+<div class="tip" id="fs57">module PowerlineSetup<br /><br />from FixedPylons</div>
+<div class="tip" id="fs58">val spatialRepresentation : obj<br /><br />Full name: FixedPylons.PlotPowerline.spatialRepresentation</div>
+<div class="tip" id="fs59">val pylons : obj list<br /><br />Full name: FixedPylons.PlotPowerline.pylons</div>
+<div class="tip" id="fs60">Multiple items<br />type Scatter =<br />&#160;&#160;inherit Trace<br />&#160;&#160;new : unit -&gt; Scatter<br />&#160;&#160;member ShouldSerializeconnectgaps : unit -&gt; bool<br />&#160;&#160;member ShouldSerializedx : unit -&gt; bool<br />&#160;&#160;member ShouldSerializedy : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeerror_x : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeerror_y : unit -&gt; bool<br />&#160;&#160;member ShouldSerializefill : unit -&gt; bool<br />&#160;&#160;member ShouldSerializefillcolor : unit -&gt; bool<br />&#160;&#160;member ShouldSerializehoverinfo : unit -&gt; bool<br />&#160;&#160;...<br /><br />Full name: XPlot.Plotly.Graph.Scatter<br /><br />--------------------<br />new : unit -&gt; Scatter</div>
+<div class="tip" id="fs61">Multiple items<br />type Line =<br />&#160;&#160;new : unit -&gt; Line<br />&#160;&#160;member ShouldSerializeautocolorscale : unit -&gt; bool<br />&#160;&#160;member ShouldSerializecauto : unit -&gt; bool<br />&#160;&#160;member ShouldSerializecmax : unit -&gt; bool<br />&#160;&#160;member ShouldSerializecmin : unit -&gt; bool<br />&#160;&#160;member ShouldSerializecolor : unit -&gt; bool<br />&#160;&#160;member ShouldSerializecolorscale : unit -&gt; bool<br />&#160;&#160;member ShouldSerializecolorsrc : unit -&gt; bool<br />&#160;&#160;member ShouldSerializedash : unit -&gt; bool<br />&#160;&#160;member ShouldSerializeoutliercolor : unit -&gt; bool<br />&#160;&#160;...<br /><br />Full name: XPlot.Plotly.Graph.Line<br /><br />--------------------<br />new : unit -&gt; Line</div>
+<div class="tip" id="fs62">val powerline : obj list<br /><br />Full name: FixedPylons.PlotPowerline.powerline</div>
+<div class="tip" id="fs63">val plot : PlotlyChart<br /><br />Full name: FixedPylons.PlotPowerline.plot</div>
+<div class="tip" id="fs64">type Chart =<br />&#160;&#160;static member Area : data:seq&lt;#seq&lt;&#39;a1 * &#39;a2&gt;&gt; -&gt; PlotlyChart (requires &#39;a1 :&gt; key and &#39;a2 :&gt; value)<br />&#160;&#160;static member Area : data:seq&lt;#key * #value&gt; -&gt; PlotlyChart<br />&#160;&#160;static member Area : data:seq&lt;#value&gt; -&gt; PlotlyChart<br />&#160;&#160;static member Bar : data:seq&lt;#seq&lt;&#39;a1 * &#39;a2&gt;&gt; -&gt; PlotlyChart (requires &#39;a1 :&gt; key and &#39;a2 :&gt; value)<br />&#160;&#160;static member Bar : data:seq&lt;#key * #value&gt; -&gt; PlotlyChart<br />&#160;&#160;static member Bar : data:seq&lt;#value&gt; -&gt; PlotlyChart<br />&#160;&#160;static member Bubble : data:seq&lt;#key * #value * #value&gt; -&gt; PlotlyChart<br />&#160;&#160;static member Candlestick : data:seq&lt;#key * #value * #value * #value * #value&gt; -&gt; PlotlyChart<br />&#160;&#160;static member Column : data:seq&lt;#seq&lt;&#39;a1 * &#39;a2&gt;&gt; -&gt; PlotlyChart (requires &#39;a1 :&gt; key and &#39;a2 :&gt; value)<br />&#160;&#160;static member Column : data:seq&lt;#key * #value&gt; -&gt; PlotlyChart<br />&#160;&#160;...<br /><br />Full name: XPlot.Plotly.Chart</div>
+<div class="tip" id="fs65">static member Chart.Plot : data:seq&lt;#Trace&gt; -&gt; PlotlyChart<br />static member Chart.Plot : data:Trace -&gt; PlotlyChart<br />static member Chart.Plot : data:seq&lt;#Trace&gt; * layout:Layout -&gt; PlotlyChart<br />static member Chart.Plot : data:Trace * layout:Layout -&gt; PlotlyChart</div>
+<div class="tip" id="fs66">static member Chart.WithXTitle : xTitle:string -&gt; chart:PlotlyChart -&gt; PlotlyChart</div>
+<div class="tip" id="fs67">static member Chart.WithYTitle : yTitle:string -&gt; chart:PlotlyChart -&gt; PlotlyChart</div>
+<div class="tip" id="fs68">static member Chart.WithTitle : title:string -&gt; chart:PlotlyChart -&gt; PlotlyChart</div>
+<div class="tip" id="fs69">static member Chart.WithLegend : enabled:bool -&gt; chart:PlotlyChart -&gt; PlotlyChart</div>
+
+
+          
+        </div>
+        <div class="span1"></div>
+      </div>
+      <hr style="margin-top:50px;"/>
+      <!-- <footer class="footer" style="text-align:center"> -->
+        <!-- Brought to you by the <a href="http://fsharp.org/technical-groups/">F# Data Science working group</a> and <a href="http://twitter.com/fslaborg">@fslaborg</a>.<br /> -->
+        <!-- Submit <a href="https://github.com/fslaborg/FsLab">feedback on GitHub</a> and help us improve FsLab! -->
+      <!-- </footer> -->
+    </div>
+  </body>
+</html>
